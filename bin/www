@@ -11,7 +11,7 @@ var http = require('http');
 /**
  * Get port from environment and store in Express.
  */
-
+//开，3000端口。链接router的四个模块
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
