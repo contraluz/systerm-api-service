@@ -40,7 +40,7 @@ exports.remove = function(req,res,next){
 
 exports.list = function(req,res,next){
 	var page = (req.body.page) ? req.body.page : 1;
-	var limit = (req.body.limit) ? req.body.limit : 5;
+	var rows = (req.body.rows) ? req.body.rows : 5;
 
 	var queryCondition = {};
 	if(req.body.name && req.body.name.trim().length>0){
@@ -50,10 +50,24 @@ exports.list = function(req,res,next){
 		}
 	}
 
-	DataModel.paginate(queryCondition, { page: parseInt(page), limit: parseInt(limit) }, function(err, result) {
+	DataModel.paginate(queryCondition, {sort: { _id : -1 }, page: parseInt(page), limit: parseInt(rows) }, function(err, result) {
 	 	result.rows = result.docs;
 	 	delete result.docs;
 	 	res.json(result)
 	});
 	
+}
+
+exports.deletes = function(req,res,next){
+	var ids = req.body.ids;
+	
+	if(ids.length>0){
+		console.log(ids.split(','))
+		DataModel.remove({_id: {$in: ids.split(',')}})
+		.then(data=>{
+			res.json({"msg":"deletes success","status":200});
+		})
+	}else{
+		res.json({"msg":"deletes fail","status":404});
+	}
 }

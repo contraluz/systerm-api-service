@@ -1,11 +1,18 @@
+
 var mongoose = require('mongoose');
 var mongoosePaginate = require('mongoose-paginate');
 
-var schema = new mongoose.Schema({ 
+var Schema = mongoose.Schema;
+
+var ObjectId = Schema.ObjectId;
+
+var NewsSchema = new Schema({
 	name:String,
-	password:String,
-	date: { type: Date, default: Date.now }
- });
-schema.plugin(mongoosePaginate);
-var News = mongoose.model('News',  schema,'news'); // Model.paginate()
-module.exports = News;
+	comment:Number,
+	date: { type: Date, default: Date.now },
+	cateId: ObjectId
+})
+
+NewsSchema.plugin(mongoosePaginate);
+
+module.exports = mongoose.model('News',NewsSchema,'news');
