@@ -9,6 +9,7 @@ var ObjectId = Schema.ObjectId;
 var NewsSchema = new Schema({
 	name:String,
 	comment:Number,
+	words:String,
 	date: { type: Date, default: Date.now },
 	cateId: ObjectId
 })
