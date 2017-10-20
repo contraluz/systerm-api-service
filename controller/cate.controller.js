@@ -18,7 +18,6 @@ exports.get = function(req,res,next){
 	})
 }
 
-
 exports.update = function(req,res,next){
 	const id = req.params.id;
 
@@ -37,7 +36,6 @@ exports.remove = function(req,res,next){
 			 ids = [doc._id];
 			 doc.getChildren().then(function(docs){
 
-
 		      for(var i=0;i<docs.length;i++){
 		      	ids.push(docs[i]._id);
 		      }
@@ -51,7 +49,6 @@ exports.remove = function(req,res,next){
 		}
 	})
 }
-
 
 function reverseTree(data, pid){
 
