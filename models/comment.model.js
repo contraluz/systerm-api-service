@@ -7,6 +7,7 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
 var CommentSchema = new Schema({
+	//允许传入的字段，链接修改到MongoDB里面
 	name:String,
 	comment:Number,
 	words:String,
